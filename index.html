@@ -15,12 +15,14 @@
         :root {
             --primary: #25D366;
             --primary-hover: #1ebe5b;
+            --primary-light: rgba(37, 211, 102, 0.1);
             --secondary: #6c757d;
             --dark: #222;
             --light: #f8f9fa;
             --white: #ffffff;
             --shadow: 0 4px 12px rgba(0,0,0,0.08);
             --transition: all 0.3s ease;
+            --gradient: linear-gradient(135deg, #25D366 0%, #4CAF50 100%);
         }
         
         body {
@@ -38,21 +40,40 @@
         header {
             background-color: var(--white);
             color: var(--dark);
-            padding: 20px 20px 15px;
+            padding: 30px 20px 25px;
             text-align: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: relative;
             z-index: 10;
         }
 
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .logo-container {
             display: flex;
             justify-content: center;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary-light);
+            transition: var(--transition);
+        }
+
+        .logo-container:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
         }
 
         .logo {
-            height: 60px;
+            height: 80px;
             width: auto;
             transition: var(--transition);
         }
@@ -68,14 +89,16 @@
 
         .intro {
             background-color: var(--white);
-            margin: 20px auto;
-            max-width: 900px;
-            padding: 25px 30px;
-            border-radius: 12px;
+            margin: 30px auto;
+            max-width: 1000px;
+            padding: 30px 40px;
+            border-radius: 16px;
             box-shadow: var(--shadow);
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-left: 5px solid var(--primary);
+            background-image: linear-gradient(to right, rgba(37, 211, 102, 0.03), rgba(255, 255, 255, 0.9));
         }
 
         .intro::before {
@@ -85,23 +108,23 @@
             left: 0;
             width: 5px;
             height: 100%;
-            background: linear-gradient(to bottom, var(--primary), #4CAF50);
+            background: var(--gradient);
         }
 
         .container {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 30px;
             padding: 20px;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         .product {
             background-color: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 30px;
             display: flex;
             align-items: center;
             gap: 30px;
@@ -109,21 +132,29 @@
             position: relative;
             overflow: hidden;
             border-left: 4px solid var(--primary);
+            background-image: linear-gradient(to right, rgba(37, 211, 102, 0.03), rgba(255, 255, 255, 0.9));
         }
 
         .product:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
         }
 
         .product-image {
-            width: 120px;
-            height: 120px;
+            width: 140px;
+            height: 140px;
             object-fit: contain;
             flex-shrink: 0;
-            border-radius: 8px;
-            padding: 10px;
-            background-color: rgba(37, 211, 102, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            background-color: var(--primary-light);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .product:hover .product-image {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
         }
 
         .product-content {
@@ -132,22 +163,36 @@
         }
 
         .product h3 {
-            margin: 0 0 10px;
+            margin: 0 0 12px;
             color: var(--dark);
-            font-size: 1.4rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .product h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
         }
 
         .product p {
-            margin: 0 0 15px;
+            margin: 0 0 20px;
             color: var(--secondary);
-            line-height: 1.5;
+            line-height: 1.6;
+            font-size: 1.05rem;
         }
 
         .btn {
-            background-color: var(--primary);
+            background: var(--gradient);
             color: white;
-            padding: 12px 28px;
+            padding: 12px 30px;
             text-decoration: none;
             border-radius: 8px;
             display: inline-block;
@@ -156,110 +201,160 @@
             font-size: 1rem;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
         .btn:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(37, 211, 102, 0.4);
+            background: linear-gradient(135deg, #1ebe5b 0%, #3d9b40 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
         }
 
         .tagline {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--secondary);
-            margin-top: 5px;
+            margin-top: 8px;
             font-weight: 500;
+            max-width: 700px;
+            line-height: 1.5;
         }
 
         .store-name {
-            font-size: 2rem;
-            margin: 5px 0;
+            font-size: 2.5rem;
+            margin: 10px 0;
             color: var(--dark);
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 0.5px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .store-name::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
         }
 
         footer {
-            background-color: var(--dark);
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
             color: var(--white);
-            padding: 30px 20px;
+            padding: 40px 20px;
             text-align: center;
-            margin-top: 40px;
+            margin-top: 60px;
         }
 
         .social-media {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin-bottom: 20px;
+            gap: 30px;
+            margin-bottom: 25px;
         }
 
         .social-icon {
             color: var(--white);
-            font-size: 1.8rem;
+            font-size: 2rem;
             transition: var(--transition);
+            background: rgba(255, 255, 255, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .social-icon:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) translateY(-3px);
         }
 
         .instagram:hover {
-            color: #E1306C;
+            background: #E1306C;
+            box-shadow: 0 4px 12px rgba(225, 48, 108, 0.3);
         }
 
         .facebook:hover {
-            color: #1877F2;
+            background: #1877F2;
+            box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
         }
 
         .copyright {
-            margin-top: 20px;
+            margin-top: 25px;
             color: #aaa;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         /* Testimonial Section */
         .testimonial-section {
             background-color: var(--white);
-            padding: 40px 20px;
-            margin: 30px auto;
-            max-width: 900px;
-            border-radius: 12px;
+            padding: 50px 20px;
+            margin: 40px auto;
+            max-width: 1000px;
+            border-radius: 16px;
             box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             position: relative;
             color: var(--dark);
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 800;
         }
 
         .section-title::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), #4CAF50);
-            margin: 10px auto 0;
-            border-radius: 2px;
+            width: 100px;
+            height: 5px;
+            background: var(--gradient);
+            margin: 15px auto 0;
+            border-radius: 3px;
         }
 
         .testimonials {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .testimonial {
             background-color: var(--light);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             position: relative;
+            transition: var(--transition);
+            border-top: 3px solid var(--primary);
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
 
         .testimonial::before {
@@ -267,44 +362,66 @@
             position: absolute;
             top: 10px;
             left: 15px;
-            font-size: 3rem;
-            color: rgba(37, 211, 102, 0.2);
+            font-size: 4rem;
+            color: rgba(37, 211, 102, 0.1);
             font-family: serif;
             line-height: 1;
+            z-index: 0;
         }
 
         .testimonial-content {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-style: italic;
             color: var(--secondary);
             position: relative;
             z-index: 1;
+            font-size: 1.05rem;
+            line-height: 1.7;
         }
 
         .testimonial-author {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--dark);
             text-align: right;
+            position: relative;
+            padding-right: 20px;
+        }
+
+        .testimonial-author::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 2px;
+            background: var(--primary);
         }
 
         .more-testimonials {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 40px;
         }
 
         .more-link {
             color: var(--primary);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
             transition: var(--transition);
+            font-size: 1.1rem;
+            border: 2px solid var(--primary-light);
+            padding: 8px 20px;
+            border-radius: 8px;
         }
 
         .more-link:hover {
             color: var(--primary-hover);
-            text-decoration: underline;
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(37, 211, 102, 0.2);
         }
 
         .more-link i {
@@ -312,7 +429,7 @@
         }
 
         .more-link:hover i {
-            transform: translateX(3px);
+            transform: translateX(5px);
         }
 
         /* Floating WhatsApp Button */
@@ -320,27 +437,129 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background-color: var(--primary);
+            background: var(--gradient);
             color: white;
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            font-size: 2rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
             z-index: 100;
             transition: var(--transition);
             text-decoration: none;
+            animation: pulse 2s infinite;
         }
 
         .floating-whatsapp:hover {
-            background-color: var(--primary-hover);
+            background: linear-gradient(135deg, #1ebe5b 0%, #3d9b40 100%);
             transform: scale(1.1);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* New Features */
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gradient);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .price {
+            display: block;
+            margin: 15px 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(37, 211, 102, 0.2) 0%, rgba(37, 211, 102, 0) 100%);
+            padding: 2px 5px;
+            border-radius: 3px;
         }
 
         @media (max-width: 768px) {
+            .logo {
+                height: 60px;
+            }
+            
+            .store-name {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .product {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+                padding: 25px 20px;
+            }
+            
+            .product-content {
+                text-align: center;
+            }
+
+            .product h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .social-media {
+                gap: 20px;
+            }
+
+            .social-icon {
+                font-size: 1.8rem;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .testimonials {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-whatsapp {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .intro {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
             .logo {
                 height: 50px;
             }
@@ -352,67 +571,50 @@
             .tagline {
                 font-size: 1rem;
             }
-            
-            .product {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-            }
-            
-            .product-content {
-                text-align: center;
-            }
 
-            .social-media {
-                gap: 20px;
+            .product-image {
+                width: 100px;
+                height: 100px;
             }
 
             .social-icon {
                 font-size: 1.6rem;
-            }
-            
-            .testimonials {
-                grid-template-columns: 1fr;
-            }
-            
-            .floating-whatsapp {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-                bottom: 20px;
-                right: 20px;
+                width: 45px;
+                height: 45px;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo-container">
-            <img src="BACKGORUND PUTIH.jpg" alt="Oige.id Logo" class="logo">
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="BACKGORUND PUTIH.jpg" alt="Oige.id Logo" class="logo">
+            </div>
+            <h1 class="store-name">Oige.id</h1>
+            <p class="tagline">Streaming App & Top Up Game - Solusi Digital untuk Generasi Muda</p>
         </div>
-        <h1 class="store-name">Oige.id</h1>
-        <p class="tagline">Streaming App & Top Up Game</p>
     </header>
 
     <div class="main-content">
         <div class="intro">
-            <p>Nama <strong>Oige</strong> berasal dari bahasa Gaelik Skotlandia yang berarti <em>anak muda</em>. Filosofi ini mencerminkan semangat kami: energik, dinamis, dan selalu siap memberikan pelayanan terbaik bagi generasi muda digital masa kini. Dengan Oige.id, kami hadir sebagai solusi mudah dan terpercaya untuk berbagai kebutuhan langganan digital dan top up.</p>
+            <p>Nama <strong class="highlight">Oige</strong> berasal dari bahasa Gaelik Skotlandia yang berarti <em>anak muda</em>. Filosofi ini mencerminkan semangat kami: energik, dinamis, dan selalu siap memberikan pelayanan terbaik bagi generasi muda digital masa kini. Dengan Oige.id, kami hadir sebagai solusi mudah dan terpercaya untuk berbagai kebutuhan langganan digital dan top up.</p>
         </div>
         
         <!-- Testimonial Section -->
         <div class="testimonial-section">
-            <h2 class="section-title">Testimoni Pelanggan</h2>
+            <h2 class="section-title">Apa Kata Pelanggan Kami?</h2>
             <div class="testimonials">
                 <div class="testimonial">
-                    <p class="testimonial-content">Layanan cepat dan terpercaya! Diamond ML langsung masuk dalam hitungan menit setelah pembayaran. Recommended banget!</p>
+                    <p class="testimonial-content">Layanan cepat dan terpercaya! Diamond ML langsung masuk dalam hitungan menit setelah pembayaran. Recommended banget! Sudah beli berkali-kali dan selalu puas dengan pelayanannya.</p>
                     <p class="testimonial-author">- Rizky, Bandung</p>
                 </div>
                 <div class="testimonial">
-                    <p class="testimonial-content">Baru pertama kali beli Netflix disini dan ternyata benar-benar premium. Akun aktif segera setelah konfirmasi pembayaran.</p>
+                    <p class="testimonial-content">Baru pertama kali beli Netflix disini dan ternyata benar-benar premium. Akun aktif segera setelah konfirmasi pembayaran. Adminnya ramah dan fast respon. Bakal langganan disini terus!</p>
                     <p class="testimonial-author">- Sarah, Jakarta</p>
                 </div>
                 <div class="testimonial">
-                    <p class="testimonial-content">Canva Pro-nya original dan harganya lebih murah dari yang lain. Sudah langganan 6 bulan dan sangat puas.</p>
+                    <p class="testimonial-content">Canva Pro-nya original dan harganya lebih murah dari yang lain. Sudah langganan 6 bulan dan sangat puas. Fitur premium semua bisa dipakai tanpa kendala.</p>
                     <p class="testimonial-author">- Andi, Surabaya</p>
                 </div>
             </div>
@@ -425,27 +627,33 @@
         
         <div class="container">
             <div class="product">
+                <span class="badge">BEST SELLER</span>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" class="product-image">
                 <div class="product-content">
                     <h3>Langganan Netflix</h3>
-                    <p>Nikmati berbagai paket langganan Netflix resmi dengan harga terbaik. Proses cepat dan akun premium langsung aktif setelah pembayaran.</p>
-                    <a href="https://wa.me/6281351400501?text=Halo%20saya%20ingin%20beli%20langganan%20Netflix" class="btn">Beli via WhatsApp</a>
+                    <span class="price">Hanya Rp 25.000/bulan</span>
+                    <p>Nikmati berbagai paket langganan Netflix resmi dengan harga terbaik. Proses cepat dan akun premium langsung aktif setelah pembayaran. Tersedia paket bulanan dan tahunan dengan garansi 100%.</p>
+                    <a href="https://wa.me/6281351400501?text=Halo%20saya%20ingin%20beli%20langganan%20Netflix" class="btn"><i class="fab fa-whatsapp"></i> Beli via WhatsApp</a>
                 </div>
             </div>
             <div class="product">
-                <img src="images.jpg" alt="Mobile Legends" class="product-image">
+                <span class="badge">FAVORIT</span>
+                <img src="https://i.ibb.co/0jQ2XKx/mobile-legends.png" alt="Mobile Legends" class="product-image">
                 <div class="product-content">
                     <h3>Diamond Mobile Legends</h3>
-                    <p>Top up Diamond Mobile Legends dengan proses instan dan aman. Diamond langsung masuk ke akun Anda tanpa perlu menunggu lama.</p>
-                    <a href="https://wa.me/6281351400501?text=Halo%20saya%20ingin%20top%20up%20Diamond%20Mobile%20Legends" class="btn">Beli via WhatsApp</a>
+                    <span class="price">Mulai dari Rp 1.000</span>
+                    <p>Top up Diamond Mobile Legends dengan proses instan dan aman. Diamond langsung masuk ke akun Anda tanpa perlu menunggu lama. Bonus voucher untuk pembelian dalam jumlah besar.</p>
+                    <a href="https://wa.me/6281351400501?text=Halo%20saya%20ingin%20top%20up%20Diamond%20Mobile%20Legends" class="btn"><i class="fab fa-whatsapp"></i> Beli via WhatsApp</a>
                 </div>
             </div>
             <div class="product">
+                <span class="badge">TERBARU</span>
                 <img src="https://ap-southeast-2-seek-apac.graphassets.com/AEzBCRO50TYyqbV6XzRDQz/8y6DzQR1SIiS2QgkZ0eL" alt="Canva" class="product-image">
                 <div class="product-content">
                     <h3>Canva Pro</h3>
-                    <p>Akses penuh semua fitur premium Canva Pro dengan harga terjangkau. Ribuan template profesional siap membantu kreativitas Anda.</p>
-                    <a href="https://wa.me/6281351400501?text=Halo%20saya%20ingin%20langganan%20Canva%20Pro" class="btn">Beli via WhatsApp</a>
+                    <span class="price">Rp 2.000/bulan</span>
+                    <p>Akses penuh semua fitur premium Canva Pro dengan harga terjangkau. Ribuan template profesional siap membantu kreativitas Anda. Akun pribadi dengan garansi keamanan.</p>
+                    <a href="https://wa.me/6281351400501?text=Halo%20saya%20ingin%20langganan%20Canva%20Pro" class="btn"><i class="fab fa-whatsapp"></i> Beli via WhatsApp</a>
                 </div>
             </div>
         </div>
@@ -461,7 +669,7 @@
             </a>
         </div>
         <div class="copyright">
-            &copy; 2025 Oige.id - All Rights Reserved
+            &copy; 2025 Oige.id - Toko Digital Terpercaya. All Rights Reserved
         </div>
     </footer>
     
